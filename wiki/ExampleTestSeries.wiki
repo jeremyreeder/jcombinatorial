@@ -8,22 +8,21 @@
 @RunWith(Parameterized.class)
 public abstract class ExampleTest {
 	// === TEST PARAMETERS ===
-	private UserFactory userFactory;
-	private CouponFactory couponFactory;
-	private ProductFactory productFactory;
-	private PaymentFactory paymentFactory;
+	private User user;
+	private Coupon coupon;
+	private Product product;
+	private Payment payment;
 
 	/** Constructs a test case to verify that a user can place an order.
-	 * @param userFactory a factory to create a user.
-	 * @param productFactory a factory to create a product.
-	 * @param couponFactory a factory to create a coupon.
-	 * @param paymentFactory a factory to create a payment. */
-	public ExampleTest(
-		UserFactory userFactory, ProductFactory productFactory,
-		CouponFactory couponFactory, PaymentFactory paymentFactory
-	) {
-		this.userFactory = userFactory; this.productFactory = productFactory;
-		this.couponFactory = couponFactory; this.paymentFactory = paymentFactory;
+	 * @param user the user to test as.
+	 * @param product the product to purchase.
+	 * @param coupon the coupon to use.
+	 * @param payment the payment to make. */
+	public ExampleTest(User user, Product product, Coupon coupon, Payment payment) {
+		this.user = user;
+		this.product = product;
+		this.coupon = coupon;
+		this.payment = payment;
 	}
 
 	/** Returns the recommended values to test for each test parameter.
@@ -33,8 +32,7 @@ public abstract class ExampleTest {
 	 * @return an array of Sets, where each Set contains possible values for one of the test parameters. */
 	protected static Set[] valuesToTestForEachParameter() {
 		return new Set[] {
-			UserFactory.setOfFactoriesToTest(), ProductFactory.setOfFactoriesToTest(),
-			CouponFactory.setOfFactoriesToTest(), PaymentFactory.setOfFactoriesToTest()
+			User.userSet(), Product.productSet(), Coupon.couponSet(), Payment.paymentSet()
 		};
 	}
 
@@ -42,15 +40,9 @@ public abstract class ExampleTest {
 	/** Runs the test case. */
 	@Test public void userCanPurchaseProductWithCouponAndPayment() {
 		System.out.printf(
-			"userFactory=«%s», productFactory=«%s», couponFactory=«%s», paymentFactory=«%s»",
-			userFactory, productFactory, couponFactory, paymentFactory
+			"user=«%s», product=«%s», coupon=«%s», payment=«%s»",
+			user, product, coupon, payment
 		);
-
-		System.out.println("Preparatory step: Construct a user, a product, a coupon, and a payment.");
-		final User user = userFactory.createUser();
-		final Product product = productFactory.createProduct();
-		final Coupon coupon = couponFactory.createCoupon();
-		final Payment payment = paymentFactory.createPayment();
 
 		System.out.println("Preparatory step: Construct an order.");
 		final Order order = new Order();
@@ -73,12 +65,7 @@ public abstract class ExampleTest {
 /** Represents a smoke-test (all-values) version of ExampleTest.
  * Tests a very limited number of combinations of parameter values, but ensures that all values get tested. */
 public class ExampleTest_Smoke extends ExampleTest {
-	public ExampleTest_Smoke(
-		UserFactory userFactory,
-		ProductFactory productFactory,
-		CouponFactory couponFactory,
-		PaymentFactory paymentFactory
-	) {
+	public ExampleTest_Smoke(User user, Product product, Coupon coupon, Payment payment) {
 		super(userFactory, productFactory, couponFactory, paymentFactory);
 	}
 
@@ -86,7 +73,9 @@ public class ExampleTest_Smoke extends ExampleTest {
 	 * @return the combination list. */
 	@Parameterized.Parameters public static List<Object[]> listOfParameterCombinations() {
 		final ParameterFactory parameterFactory = new AllValuesParameterFactory();
-		parameterFactory.setValuesToTestForEachParameter(valuesToTestForEachParameter());
+		parameterFactory.setValuesToTestForEachParameter(
+			valuesToTestForEachParameter() // from abstract class
+		);
 		return parameterFactory.createListOfParameterCombinations();
 	}
 }
