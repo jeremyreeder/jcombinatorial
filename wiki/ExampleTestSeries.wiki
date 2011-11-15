@@ -22,7 +22,7 @@ public abstract class ExampleTest {
 	}
 
 	/** Returns the recommended values to test for each test parameter.
-	 * @return an array of Sets, where each Set contains possible values for one of the test parameters. */
+	 * @return an array of arrays, where each sub-array contains possible values for one of the test parameters. */
 	protected static Set[] valuesToTestForEachParameter() {
 		return new Set[] {
 			new User[] { User.REGISTERED_USER, User.UNREGISTERED_USER },
