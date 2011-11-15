@@ -33,7 +33,7 @@ public abstract class ExampleTest {
 			new Coupon[] { Coupon.FIVE_DOLLARS_OFF, Coupon.TEN_PERCENT_OFF },
 			new Payment[] {
 				new WireTransferPayment(), new CreditCardPayment(),
-				new PayPalPayment(), new GooglePayment()
+				new PayPalPayment(), new GiftCertificatePayment()
 		};
 	}
 
