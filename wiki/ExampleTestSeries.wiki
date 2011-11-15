@@ -23,8 +23,8 @@ public abstract class ExampleTest {
 
 	/** Returns the recommended values to test for each test parameter.
 	 * @return an array of arrays, where each sub-array contains possible values for one of the test parameters. */
-	protected static Set[] valuesToTestForEachParameter() {
-		return new Set[] {
+	protected static Object[][] valuesToTestForEachParameter() {
+		return new Object[][] {
 			new User[] { User.REGISTERED_USER, User.UNREGISTERED_USER },
 			new Product[] {
 				Product.SHIRT, Product.PANTS, Product.PEANUT_BUTTER,
