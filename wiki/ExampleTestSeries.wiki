@@ -13,7 +13,7 @@ public abstract class ExampleTest {
 	private Product product;
 	private Payment payment;
 
-	/** Constructs a test case to verify that a user can place an order.
+	/** Constructs a test case to verify that a user can place an order. */
 	public ExampleTest(User user, Product product, Coupon coupon, Payment payment) {
 		this.user = user;
 		this.product = product;
@@ -21,7 +21,7 @@ public abstract class ExampleTest {
 		this.payment = payment;
 	}
 
-	/** Returns the recommended values to test for each test parameter. */
+	/** Returns the recommended values to test for each test parameter.
 	 * These values may be used to create the list of parameter combinations to test.
 	 * The combinations to test must be determined by a public static member of a subclass, and that member must be
 	 * annotated with "@Parameterized.Parameters".
