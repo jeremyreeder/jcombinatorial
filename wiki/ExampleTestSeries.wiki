@@ -25,7 +25,13 @@ public abstract class ExampleTest {
 	 * @return an array of Sets, where each Set contains possible values for one of the test parameters. */
 	protected static Set[] valuesToTestForEachParameter() {
 		return new Set[] {
-			User.userSet(), Product.productSet(), Coupon.couponSet(), Payment.paymentSet()
+			new User[] { User.REGISTERED_USER, User.UNREGISTERED_USER },
+			new Product[] {
+				Product.SHIRT, Product.PANTS, Product.PEANUT_BUTTER,
+				Product.APPLE, Product.BAKED_POTATO, Product.GIFT_CERTIFICATE
+			},
+			new Coupon[] { Coupon.FIVE_DOLLARS_OFF, Coupon.TEN_PERCENT_OFF },
+			new Payment[] { new WireTransferPayment(), new CreditCardPayment()
 		};
 	}
 
