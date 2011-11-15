@@ -40,7 +40,7 @@ public abstract class ExampleTest {
 
 	// === THE TEST ===
 	/** Runs the test case. */
-	@Test public void givenUserCanPlaceOrderWithGivenCouponAndGivenPartialAndFinalPayments() {
+	@Test public void userCanPurchaseProductWithCouponAndPayment() {
 		System.out.printf(
 			"userFactory=«%s», productFactory=«%s», couponFactory=«%s», paymentFactory=«%s»",
 			userFactory, productFactory, couponFactory, paymentFactory
