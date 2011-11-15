@@ -50,7 +50,7 @@ public abstract class ExampleTest {
 	}
 }
 }}}
-_Note the _*@Test*_ annotation, the _*public*_ modifier, and the _*void*_ return-type on the userCanPurchaseProductWithCouponAndPayment method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke"._
+_Note the _*@Test*_ annotation, the _*public*_ modifier, and the _*void*_ return-type on the _*userCanPurchaseProductWithCouponAndPayment()*_ method. Also note that it takes no parameters. (It gets the test-parameters indirectly through the class constructor.) Without all of these attributes, JUnit would have an initialization error._
 
 = Concrete test implementations =
 
