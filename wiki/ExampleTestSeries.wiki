@@ -87,21 +87,13 @@ public class ExampleTest_Smoke extends ExampleTest {
  * Pairs each value of each parameter to each value of all other parameters.
  * Far from exhaustive, but hopefully will find most bugs. */
 public class ExampleTest_Regression extends ExampleTest {
-	public ExampleTest_Regression(
-		UserFactory userFactory,
-		ProductFactory productFactory,
-		CouponFactory couponFactory,
-		PaymentFactory paymentFactory
-	) {
-		super(userFactory, productFactory, couponFactory, paymentFactory);
-	}
+	// <insert constructor here, identical to the ExampleTest_Smoke constructor>
 
 	/** Returns a relatively small list of parameter combinations (i.e. test cases).
 	 * @return the combination list. */
 	@Parameterized.Parameters public static List<Object[]> listOfParameterCombinations() {
 		final ParameterFactory parameterFactory = new AllPairsParameterFactory();
-		parameterFactory.setValuesToTestForEachParameter(valuesToTestForEachParameter());
-		return parameterFactory.createListOfParameterCombinations();
+		// <create combinations here, just as in ExampleTest_Smoke>
 	}
 }
 }}}
@@ -111,21 +103,13 @@ public class ExampleTest_Regression extends ExampleTest {
 /** Represents an exhaustive version of ExampleTest.
  * Tests all possible combinations of the parameter values. */
 public class ExampleTest_Exhaustive extends ExampleTest {
-	public ExampleTest_Exhaustive(
-		UserFactory userFactory,
-		ProductFactory productFactory,
-		CouponFactory couponFactory,
-		PaymentFactory paymentFactory
-	) {
-		super(userFactory, productFactory, couponFactory, paymentFactory);
-	}
+	// <insert constructor here, identical to the ExampleTest_Smoke constructor>
 
 	/** Returns a huge list of parameter combinations (i.e. test cases).
 	 * @return the combination list. */
 	@Parameterized.Parameters public static List<Object[]> listOfParameterCombinations() {
 		final ParameterFactory parameterFactory = new AllCombinationsParameterFactory();
-		parameterFactory.setValuesToTestForEachParameter(valuesToTestForEachParameter());
-		return parameterFactory.createListOfParameterCombinations();
+		// <create combinations here, just as in ExampleTest_Smoke>
 	}
 }
 }}}
