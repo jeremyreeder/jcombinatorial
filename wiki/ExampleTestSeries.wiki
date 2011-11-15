@@ -1,0 +1,90 @@
+#summary An example of a series of parameterized JUnit tests utilizing JCombinatorial.
+#labels parameterized,testing,example,pairwise,all-pairs,exhaustive,smoke,regression
+
+= Abstract test =
+{{{
+/** Represents an example of a parameterized test.
+ * This example verifies that a user can place an order through an E-commerce web-site. */
+@RunWith(Parameterized.class)
+public abstract class ExampleTest {
+	// === TEST PARAMETERS ===
+	private UserFactory userFactory; private CouponFactory couponFactory;
+	private ProductFactory productFactory; private PaymentFactory paymentFactory;
+
+	/** Constructs a test case to verify that a user can place an order.
+	 * @param userFactory a factory to create a user.
+	 * @param productFactory a factory to create a product.
+	 * @param couponFactory a factory to create a coupon.
+	 * @param paymentFactory a factory to create a payment. */
+	public ExampleTest(
+		UserFactory userFactory, ProductFactory productFactory,
+		CouponFactory couponFactory, PaymentFactory paymentFactory
+	) {
+		this.userFactory = userFactory; this.productFactory = productFactory;
+		this.couponFactory = couponFactory; this.paymentFactory = paymentFactory;
+	}
+
+	/** Returns the recommended values to test for each test parameter.
+	 * These values may be used to create the list of parameter combinations to test.
+	 * The combinations to test must be determined by a public static member of a subclass, and that member must be
+	 * annotated with "@Parameterized.Parameters".
+	 * @return an array of Sets, where each Set contains possible values for one of the test parameters. */
+	protected static Set[] valuesToTestForEachParameter() {
+		return new Set[] {
+			UserFactory.setOfFactoriesToTest(), ProductFactory.setOfFactoriesToTest(),
+			CouponFactory.setOfFactoriesToTest(), PaymentFactory.setOfFactoriesToTest()
+		};
+	}
+
+	// === THE TEST ===
+	/** Runs the test case. */
+	@Test public void givenUserCanPlaceOrderWithGivenCouponAndGivenPartialAndFinalPayments() {
+		System.out.printf(
+			"userFactory=«%s», productFactory=«%s», couponFactory=«%s», paymentFactory=«%s»",
+			userFactory, productFactory, couponFactory, paymentFactory
+		);
+
+		System.out.println("Preparatory step: Construct a user, a product, a coupon, and a payment.");
+		final User user = userFactory.createUser();
+		final Product product = productFactory.createProduct();
+		final Coupon coupon = couponFactory.createCoupon();
+		final Payment payment = paymentFactory.createPayment();
+
+		System.out.println("Preparatory step: Construct an order.");
+		final Order order = new Order();
+		order.setUser(user);
+		order.addProduct(product);
+		order.setCoupon(coupon);
+		order.addPayment(payment);
+
+		System.out.println("Test step: Place the order.")
+		final ECommerceWebSite webSite = new ECommerceWebSite();
+		webSite.placeOrder(order);
+	}
+}
+}}}
+Add your content here.
+
+
+= Concrete test implementations =
+
+== Smoke test ==
+{{{
+public class ExampleTest_Smoke extends ExampleTest {
+	public ExampleTest_Smoke(
+		UserFactory userFactory, ProductFactory productFactory,
+		CouponFactory couponFactory, PaymentFactory paymentFactory
+	) {
+		super(userFactory, productFactory, couponFactory, paymentFactory);
+	}
+	@Parameterized.Parameters public static List<Object[]> listOfParameterCombinations() {
+		final ParameterFactory parameterFactory = new AllValuesParameterFactory();
+		parameterFactory.setValuesToTestForEachParameter(valuesToTestForEachParameter());
+		return parameterFactory.createListOfParameterCombinations();
+	}
+}
+}}}
+
+== Regression test ==
+
+== Exhaustive test ==
