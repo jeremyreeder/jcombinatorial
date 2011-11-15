@@ -8,8 +8,10 @@
 @RunWith(Parameterized.class)
 public abstract class ExampleTest {
 	// === TEST PARAMETERS ===
-	private UserFactory userFactory; private CouponFactory couponFactory;
-	private ProductFactory productFactory; private PaymentFactory paymentFactory;
+	private UserFactory userFactory;
+	private CouponFactory couponFactory;
+	private ProductFactory productFactory;
+	private PaymentFactory paymentFactory;
 
 	/** Constructs a test case to verify that a user can place an order.
 	 * @param userFactory a factory to create a user.
@@ -63,20 +65,25 @@ public abstract class ExampleTest {
 	}
 }
 }}}
-Add your content here.
-
 
 = Concrete test implementations =
 
 == Smoke test ==
 {{{
+/** Represents a smoke-test (all-values) version of ExampleTest.
+ * Tests a very limited number of combinations of parameter values, but ensures that all values get tested. */
 public class ExampleTest_Smoke extends ExampleTest {
 	public ExampleTest_Smoke(
-		UserFactory userFactory, ProductFactory productFactory,
-		CouponFactory couponFactory, PaymentFactory paymentFactory
+		UserFactory userFactory,
+		ProductFactory productFactory,
+		CouponFactory couponFactory,
+		PaymentFactory paymentFactory
 	) {
 		super(userFactory, productFactory, couponFactory, paymentFactory);
 	}
+
+	/** Returns a tiny list of parameter combinations (i.e. test cases).
+	 * @return the combination list. */
 	@Parameterized.Parameters public static List<Object[]> listOfParameterCombinations() {
 		final ParameterFactory parameterFactory = new AllValuesParameterFactory();
 		parameterFactory.setValuesToTestForEachParameter(valuesToTestForEachParameter());
@@ -86,5 +93,50 @@ public class ExampleTest_Smoke extends ExampleTest {
 }}}
 
 == Regression test ==
+{{{
+/** Represents a regression-test (all-pairs) version of ExampleTest.
+ * Pairs each value of each parameter to each value of all other parameters.
+ * Far from exhaustive, but hopefully will find most bugs. */
+public class ExampleTest_Smoke extends ExampleTest {
+	public ExampleTest_Regression(
+		UserFactory userFactory,
+		ProductFactory productFactory,
+		CouponFactory couponFactory,
+		PaymentFactory paymentFactory
+	) {
+		super(userFactory, productFactory, couponFactory, paymentFactory);
+	}
+
+	/** Returns a relatively small list of parameter combinations (i.e. test cases).
+	 * @return the combination list. */
+	@Parameterized.Parameters public static List<Object[]> listOfParameterCombinations() {
+		final ParameterFactory parameterFactory = new AllPairsParameterFactory();
+		parameterFactory.setValuesToTestForEachParameter(valuesToTestForEachParameter());
+		return parameterFactory.createListOfParameterCombinations();
+	}
+}
+}}}
 
 == Exhaustive test ==
+{{{
+/** Represents an exhaustive version of ExampleTest.
+ * Tests all possible combinations of the parameter values. */
+public class ExampleTest_Smoke extends ExampleTest {
+	public ExampleTest_Smoke(
+		UserFactory userFactory,
+		ProductFactory productFactory,
+		CouponFactory couponFactory,
+		PaymentFactory paymentFactory
+	) {
+		super(userFactory, productFactory, couponFactory, paymentFactory);
+	}
+
+	/** Returns a huge list of parameter combinations (i.e. test cases).
+	 * @return the combination list. */
+	@Parameterized.Parameters public static List<Object[]> listOfParameterCombinations() {
+		final ParameterFactory parameterFactory = new AllCombinationsParameterFactory();
+		parameterFactory.setValuesToTestForEachParameter(valuesToTestForEachParameter());
+		return parameterFactory.createListOfParameterCombinations();
+	}
+}
+}}}
