@@ -75,7 +75,7 @@ public class ExampleTest_Smoke extends ExampleTest {
 }
 }}}
 
-_Note the _*@Parameterized.Parameters*_ annotation and the _*public static*_ modifiers on the listOfParameterCombinations() method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke"._
+_Note the _*@Parameterized.Parameters*_ annotation and the _*public static*_ modifiers on the _*listOfParameterCombinations()*_ method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke"._
 
 == Regression test ==
 {{{
