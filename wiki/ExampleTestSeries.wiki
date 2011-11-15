@@ -31,7 +31,9 @@ public abstract class ExampleTest {
 				Product.APPLE, Product.BAKED_POTATO, Product.GIFT_CERTIFICATE
 			},
 			new Coupon[] { Coupon.FIVE_DOLLARS_OFF, Coupon.TEN_PERCENT_OFF },
-			new Payment[] { new WireTransferPayment(), new CreditCardPayment()
+			new Payment[] {
+				new WireTransferPayment(), new CreditCardPayment(),
+				new PayPalPayment(), new GooglePayment()
 		};
 	}
 
