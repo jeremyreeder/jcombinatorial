@@ -14,10 +14,6 @@ public abstract class ExampleTest {
 	private Payment payment;
 
 	/** Constructs a test case to verify that a user can place an order.
-	 * @param user the user to test as.
-	 * @param product the product to purchase.
-	 * @param coupon the coupon to use.
-	 * @param payment the payment to make. */
 	public ExampleTest(User user, Product product, Coupon coupon, Payment payment) {
 		this.user = user;
 		this.product = product;
