@@ -34,6 +34,7 @@ public abstract class ExampleTest {
 			new Payment[] {
 				new WireTransferPayment(), new CreditCardPayment(),
 				new PayPalPayment(), new GiftCertificatePayment()
+			}
 		};
 	}
 
