@@ -22,9 +22,6 @@ public abstract class ExampleTest {
 	}
 
 	/** Returns the recommended values to test for each test parameter.
-	 * These values may be used to create the list of parameter combinations to test.
-	 * The combinations to test must be determined by a public static member of a subclass, and that member must be
-	 * annotated with "@Parameterized.Parameters".
 	 * @return an array of Sets, where each Set contains possible values for one of the test parameters. */
 	protected static Set[] valuesToTestForEachParameter() {
 		return new Set[] {
