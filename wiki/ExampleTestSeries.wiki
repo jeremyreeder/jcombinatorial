@@ -97,7 +97,7 @@ public class ExampleTest_Smoke extends ExampleTest {
 /** Represents a regression-test (all-pairs) version of ExampleTest.
  * Pairs each value of each parameter to each value of all other parameters.
  * Far from exhaustive, but hopefully will find most bugs. */
-public class ExampleTest_Smoke extends ExampleTest {
+public class ExampleTest_Regression extends ExampleTest {
 	public ExampleTest_Regression(
 		UserFactory userFactory,
 		ProductFactory productFactory,
@@ -121,8 +121,8 @@ public class ExampleTest_Smoke extends ExampleTest {
 {{{
 /** Represents an exhaustive version of ExampleTest.
  * Tests all possible combinations of the parameter values. */
-public class ExampleTest_Smoke extends ExampleTest {
-	public ExampleTest_Smoke(
+public class ExampleTest_Exhaustive extends ExampleTest {
+	public ExampleTest_Exhaustive(
 		UserFactory userFactory,
 		ProductFactory productFactory,
 		CouponFactory couponFactory,
