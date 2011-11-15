@@ -1,4 +1,4 @@
-#summary An example of a series of parameterized JUnit tests utilizing JCombinatorial.
+#summary An example series of parameterized JUnit tests that utilize JCombinatorial.
 #labels parameterized,testing,example,pairwise,all-pairs,exhaustive,smoke,regression
 
 = Abstract test =
