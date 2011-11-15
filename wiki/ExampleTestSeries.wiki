@@ -50,7 +50,7 @@ public abstract class ExampleTest {
 	}
 }
 }}}
-_Note the _*@Test*_ annotation, the _*public*_ modifier, and the _*void*_ return-type on the _*userCanPurchaseProductWithCouponAndPayment()*_ method. Also note that it takes no parameters. (It gets the test-parameters indirectly through the class constructor.) Without all of these attributes, JUnit would have an initialization error._
+Note the *{{{@Test}}}* annotation, the *{{{public}}}* modifier, and the *{{{void}}}* return-type on the *{{{userCanPurchaseProductWithCouponAndPayment()}}}* method. Also note that it takes no parameters. (It gets the test-parameters indirectly through the class constructor.) Without all of these attributes, JUnit would have an initialization error.
 
 = Concrete test implementations =
 
@@ -75,7 +75,7 @@ public class ExampleTest_Smoke extends ExampleTest {
 }
 }}}
 
-_Note the _*@Parameterized.Parameters*_ annotation and the _*public static*_ modifiers on the _*listOfParameterCombinations()*_ method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke"._
+Note the *{{{@Parameterized.Parameters}}}* annotation and the *{{{public static}}}* modifiers on the *{{{listOfParameterCombinations()}}}* method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke".
 
 == Regression test ==
 {{{
