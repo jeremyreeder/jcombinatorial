@@ -5,7 +5,7 @@
 {{{
 /** Represents an example of a parameterized test.
  * This example verifies that a user can place an order through an E-commerce web-site. */
-@RunWith(Parameterized.class)
+@RunWith(Parameterized.class) // This annotation tells JUnit to run this as a parameterized test.
 public abstract class ExampleTest {
 	// === TEST PARAMETERS ===
 	private User user;
@@ -50,6 +50,7 @@ public abstract class ExampleTest {
 	}
 }
 }}}
+_Note the _*@Test*_ annotation, the _*public*_ modifier, and the _*void*_ return-type on the userCanPurchaseProductWithCouponAndPayment method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke"._
 
 = Concrete test implementations =
 
@@ -73,6 +74,8 @@ public class ExampleTest_Smoke extends ExampleTest {
 	}
 }
 }}}
+
+_Note the _*@Parameterized.Parameters*_ annotation and the _*public static*_ modifiers on the listOfParameterCombinations() method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke"._
 
 == Regression test ==
 {{{
