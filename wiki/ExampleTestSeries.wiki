@@ -4,6 +4,8 @@
 The following code is given as an example of how to write automated tests in Java that are reusable and easy to maintain. JUnit's "Parameterized" test-runner is used for this purpose, along with JCombinatorial's various parameter factories.
 
 = Abstract test =
+We have a web-site to test. The site has two types of users, four types of products, two types of coupons, and four payment methods. We want to test with all of these.
+
 {{{
 /** Represents an example of a parameterized test.
  * This example verifies that a user can place an order through an E-commerce web-site. */
