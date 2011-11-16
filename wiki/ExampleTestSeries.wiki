@@ -1,6 +1,8 @@
 #summary An example series of parameterized JUnit tests that utilize JCombinatorial.
 #labels parameterized,testing,example,pairwise,all-pairs,exhaustive,smoke,regression
 
+The following code is given as an example of how to write automated tests in Java that are reusable and easy to maintain. JUnit's "Parameterized" test-runner is used for this purpose, along with JCombinatorial's various parameter factories.
+
 = Abstract test =
 {{{
 /** Represents an example of a parameterized test.
@@ -26,10 +28,7 @@ public abstract class ExampleTest {
 	protected static Object[][] valuesToTestForEachParameter() {
 		return new Object[][] {
 			new User[] { User.REGISTERED_USER, User.UNREGISTERED_USER },
-			new Product[] {
-				Product.SHIRT, Product.PANTS, Product.PEANUT_BUTTER,
-				Product.APPLE, Product.BAKED_POTATO, Product.GIFT_CERTIFICATE
-			},
+			new Product[] { Product.TYPICAL, Product.DROP_SHIP, Product.E_BOOK, Product.GIFT_CERTIFICATE },
 			new Coupon[] { Coupon.FIVE_DOLLARS_OFF, Coupon.TEN_PERCENT_OFF },
 			new Payment[] {
 				new WireTransferPayment(), new CreditCardPayment(),
@@ -53,7 +52,7 @@ public abstract class ExampleTest {
 		order.setCoupon(coupon);
 		order.addPayment(payment);
 
-		System.out.println("Test step: Place the order.")
+		System.out.println("Test step: Place the order.");
 		final ECommerceWebSite webSite = new ECommerceWebSite();
 		webSite.placeOrder(order);
 	}
@@ -69,7 +68,7 @@ Note the *{{{@Test}}}* annotation, the *{{{public}}}* modifier, and the *{{{void
  * Tests a very limited number of combinations of parameter values, but ensures that all values get tested. */
 public class ExampleTest_Smoke extends ExampleTest {
 	public ExampleTest_Smoke(User user, Product product, Coupon coupon, Payment payment) {
-		super(userFactory, productFactory, couponFactory, paymentFactory);
+		super(user, product, coupon, payment);
 	}
 
 	/** Returns a tiny list of parameter combinations (i.e. test cases).
