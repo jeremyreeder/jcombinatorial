@@ -26,11 +26,14 @@ public abstract class ExampleTest {
 	}
 
 	/** Returns the recommended values to test for each test parameter.
-	 * @return an array of arrays, where each sub-array contains possible values for one of the test parameters. */
+	 * @return an array of arrays, where each sub-array contains values for one of the test parameters. */
 	protected static Object[][] valuesToTestForEachParameter() {
 		return new Object[][] {
 			new User[] { User.REGISTERED_USER, User.UNREGISTERED_USER },
-			new Product[] { Product.TYPICAL, Product.DROP_SHIP, Product.E_BOOK, Product.GIFT_CERTIFICATE },
+			new Product[] {
+				Product.TYPICAL, Product.DROP_SHIP,
+				Product.E_BOOK, Product.GIFT_CERTIFICATE
+			},
 			new Coupon[] { Coupon.FIVE_DOLLARS_OFF, Coupon.TEN_PERCENT_OFF },
 			new Payment[] {
 				new WireTransferPayment(), new CreditCardPayment(),
