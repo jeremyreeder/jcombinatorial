@@ -43,7 +43,7 @@ public abstract class ExampleTest {
 	/** Runs the test case. */
 	@Test public void userCanPurchaseProductWithCouponAndPayment() {
 		System.out.printf(
-			"user=«%s», product=«%s», coupon=«%s», payment=«%s»",
+			"user=«%s», product=«%s», coupon=«%s», payment=«%s»\n",
 			user, product, coupon, payment
 		);
 
