@@ -1,7 +1,7 @@
 #summary An example series of parameterized JUnit tests that utilize JCombinatorial.
 #labels parameterized,testing,example,pairwise,all-pairs,exhaustive,smoke,regression
 
-The following code is given as an example of how to write automated tests in Java that are reusable and easy to maintain. JUnit's "Parameterized" test-runner is used for this purpose, along with JCombinatorial's various parameter factories.
+The following code is given as an example of how to write automated tests in Java that are reusable and easy to maintain. JUnit's "Parameterized" test-runner is used for this purpose, along with JCombinatorial's various parameter factories. A complete, compilable version of the code is included within the downloadable package.
 
 = Abstract test =
 We have a web-site to test. The site has two types of users, four types of products, two types of coupons, and four payment methods. We want to test with all of these, as well as with no coupon.
@@ -56,6 +56,7 @@ public abstract class ExampleTest {
 	}
 }
 }}}
+
 Note the *{{{@Test}}}* annotation, the *{{{public}}}* modifier, and the *{{{void}}}* return-type on the *{{{userCanPurchaseProductWithCouponAndPayment()}}}* method. Also note that it takes no parameters. (It gets the test-parameters indirectly through the class constructor.) Without all of these attributes, JUnit would have an initialization error.
 
 = Concrete test implementations =
@@ -83,6 +84,8 @@ public class ExampleTest_Smoke extends ExampleTest {
 
 Note the *{{{@Parameterized.Parameters}}}* annotation and the *{{{public static}}}* modifiers on the *{{{listOfParameterCombinations()}}}* method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke".
 
+The AllValuesParameterFactory creates a list of four parameter combinations. (Whichever parameter has the greatest number of test values, the number of combinations is always equal to that number.) Therefore, ExampleTest_Smoke executes four test cases.
+
 == Regression test ==
 {{{
 /** Represents a regression-test (all-pairs) version of ExampleTest.
@@ -100,6 +103,8 @@ public class ExampleTest_Regression extends ExampleTest {
 }
 }}}
 
+The AllPairsParameterFactory creates 17 parameter combinations. (The number of combinations required is always equal to or slightly greater than the product of the sizes of the two largest sets of test values. 4 x 4 = 16) Therefore, ExampleTest_Regression executes 17 test cases.
+
 == Exhaustive test ==
 {{{
 /** Represents an exhaustive version of ExampleTest.
@@ -115,3 +120,5 @@ public class ExampleTest_Exhaustive extends ExampleTest {
 	}
 }
 }}}
+
+The AllCombinationsParameterFactory creates 96 parameter combinations. (The number of combinations required is the product of the sizes of all of the value sets. 2 x 4 x 3 x 4 = 96) Therefore, ExampleTest_Exhaustive executes 96 test cases.
