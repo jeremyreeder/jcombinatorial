@@ -2,7 +2,7 @@
 *An example series of parameterized JUnit tests that utilize JCombinatorial.*
 
 The following code is given as an example of how to write automated tests in
-Java that are reusable and easy to maintain. JUnit's "Parameterized"
+Java that are reusable and easy to maintain. JUnit's `Parameterized`
 test-runner is used for this purpose, along with JCombinatorial's various
 parameter factories. A complete, compilable version of the code is included
 within the downloadable package.
