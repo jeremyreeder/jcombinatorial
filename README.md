@@ -5,4 +5,6 @@ Each factory takes a set of possible values for each test parameter and creates 
 * _AllPairsParameterFactory_, which generates parameters for the minimum number of test-cases required to test all pairings of the given parameter values. (This factory provides what is typically seen as a good balance between efficiency and completeness in testing. You can read more about this "all-pairs" or "pairwise" approach in an article by the United States Computer Security Resource Center or in the Wikipedia article.)
 * _AllCombinationsParameterFactory_, which generates all possible combinations of the given parameter values. (This exhaustive factory is recommended when the time required to execute each test-case is very short and the consequence of leaving a bug undiscovered would be quite severe.)
 
+For full documentation, see the [wiki](https://github.com/jeremyreeder/jcombinatorial/wiki).
+
 This library was developed by Jeremy Reeder at Bodybuilding.com and is subject to the terms of the New BSD License. Copyright © MMXI, Bodybuilding.com LLC. Portions copyright © MMX Ng Pan Wei. (JWise library) Further details of the license agreements can be found within the downloadable package.
