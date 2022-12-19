@@ -102,9 +102,9 @@ static` modifiers on the `listOfParameterCombinations()` method.
 Without these, JUnit would throw an exception with the message "No public
 static parameters method on class ExampleTest_Smoke".
 
-The AllValuesParameterFactory creates a list of four parameter combinations.
+The `AllValuesParameterFactory` creates a list of four parameter combinations.
 (Whichever parameter has the greatest number of test values, the number of
-combinations is always equal to that number.) Therefore, ExampleTest_Smoke
+combinations is always equal to that number.) Therefore, `ExampleTest_Smoke`
 executes four test cases.
 
 This test gives, within a very short time, a rough idea of how functional the
@@ -130,10 +130,10 @@ public class ExampleTest_Regression extends ExampleTest {
 }
 ```
 
-The AllPairsParameterFactory creates 17 parameter combinations. (The number of
+The `AllPairsParameterFactory` creates 17 parameter combinations. (The number of
 combinations required is always equal to or slightly greater than the product
 of the sizes of the two largest sets of test values. `4 x 4 = 16`) Therefore,
-ExampleTest_Regression executes 17 test cases.
+`ExampleTest_Regression` executes 17 test cases.
 
 This test gives, within a reasonably short time, a pretty good idea of how
 functional the web-site's order-placement feature is. (Assuming that the input
@@ -158,9 +158,9 @@ public class ExampleTest_Exhaustive extends ExampleTest {
 }
 ```
 
-The AllCombinationsParameterFactory creates 96 parameter combinations. (The
+The `AllCombinationsParameterFactory` creates 96 parameter combinations. (The
 number of combinations required is the product of the sizes of all of the value
-sets. `2 x 4 x 3 x 4 = 96`) Therefore, ExampleTest_Exhaustive executes 96 test
+sets. `2 x 4 x 3 x 4 = 96`) Therefore, `ExampleTest_Exhaustive` executes 96 test
 cases.
 
 This test may take a very long time, but it gives an excellent idea of how
