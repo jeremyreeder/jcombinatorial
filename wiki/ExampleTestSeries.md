@@ -1,12 +1,18 @@
-#summary An example series of parameterized JUnit tests that utilize JCombinatorial.
-#labels parameterized,testing,example,pairwise,all-pairs,exhaustive,smoke,regression
+# ExampleTestSeries
+*An example series of parameterized JUnit tests that utilize JCombinatorial.*
 
-The following code is given as an example of how to write automated tests in Java that are reusable and easy to maintain. JUnit's "Parameterized" test-runner is used for this purpose, along with JCombinatorial's various parameter factories. A complete, compilable version of the code is included within the downloadable package.
+The following code is given as an example of how to write automated tests in
+Java that are reusable and easy to maintain. JUnit's "Parameterized"
+test-runner is used for this purpose, along with JCombinatorial's various
+parameter factories. A complete, compilable version of the code is included
+within the downloadable package.
 
-= Abstract test =
-We have a web-site to test. The site has two types of users, four types of products, two types of coupons, and four payment methods. We want to test with all of these, as well as with no coupon.
+## Abstract Test
+We have a web-site to test. The site has two types of users, four types of
+products, two types of coupons, and four payment methods. We want to test with
+all of these, as well as with no coupon.
 
-{{{
+```
 /** Represents an example of a parameterized test.
  * This example verifies that a user can place an order through an E-commerce web-site. */
 @RunWith(Parameterized.class) // This annotation tells JUnit to run this as a parameterized test.
@@ -55,16 +61,23 @@ public abstract class ExampleTest {
 		webSite.placeOrder(order);
 	}
 }
-}}}
+```
 
-Assuming that the *{{{placeOrder}}}* method contains the requisite assertions throughout its order-placement process, this test is capable of testing the placement of arbitrary orders.
+Assuming that the *{{{placeOrder}}}* method contains the requisite assertions
+throughout its order-placement process, this test is capable of testing the
+placement of arbitrary orders.
 
-Note the *{{{@Test}}}* annotation, the *{{{public}}}* modifier, and the *{{{void}}}* return-type on the *{{{userCanPurchaseProductWithCouponAndPayment()}}}* method. Also note that it takes no parameters. (It gets the test-parameters indirectly through the class constructor.) Without all of these attributes, JUnit would have an initialization error.
+Note the *{{{@Test}}}* annotation, the *{{{public}}}* modifier, and the
+*{{{void}}}* return-type on the
+*{{{userCanPurchaseProductWithCouponAndPayment()}}}* method. Also note that it
+takes no parameters. (It gets the test-parameters indirectly through the class
+constructor.) Without all of these attributes, JUnit would have an
+initialization error.
 
-= Concrete test implementations =
+## Concrete Test Implementations
 
-== Smoke test ==
-{{{
+### Smoke Test
+```
 /** Represents a smoke-test (all-values) version of ExampleTest.
  * Tests a very limited number of combinations of parameter values, but ensures that all values get tested. */
 public class ExampleTest_Smoke extends ExampleTest {
@@ -84,14 +97,24 @@ public class ExampleTest_Smoke extends ExampleTest {
 }
 }}}
 
-Note the *{{{@Parameterized.Parameters}}}* annotation and the *{{{public static}}}* modifiers on the *{{{listOfParameterCombinations()}}}* method. Without these, JUnit would throw an exception with the message "No public static parameters method on class ExampleTest_Smoke".
+Note the *{{{@Parameterized.Parameters}}}* annotation and the *{{{public
+static}}}* modifiers on the *{{{listOfParameterCombinations()}}}* method.
+Without these, JUnit would throw an exception with the message "No public
+static parameters method on class ExampleTest_Smoke".
 
-The AllValuesParameterFactory creates a list of four parameter combinations. (Whichever parameter has the greatest number of test values, the number of combinations is always equal to that number.) Therefore, ExampleTest_Smoke executes four test cases.
+The AllValuesParameterFactory creates a list of four parameter combinations.
+(Whichever parameter has the greatest number of test values, the number of
+combinations is always equal to that number.) Therefore, ExampleTest_Smoke
+executes four test cases.
 
-This test gives, within a very short time, a rough idea of how functional the web-site's order-placement feature is. (Assuming that the input values you provided are representative of all possible values and that the majority of your bugs can be triggered by single inputs. Analysis is required of the software under test in order to assess the validity of this assumption.)
+This test gives, within a very short time, a rough idea of how functional the
+web-site's order-placement feature is. (Assuming that the input values you
+provided are representative of all possible values and that the majority of
+your bugs can be triggered by single inputs. Analysis is required of the
+software under test in order to assess the validity of this assumption.)
 
-== Regression test ==
-{{{
+### Regression Test
+```
 /** Represents a regression-test (all-pairs) version of ExampleTest.
  * Pairs each value of each parameter to each value of all other parameters.
  * Far from exhaustive, but hopefully will find most bugs. */
@@ -105,14 +128,22 @@ public class ExampleTest_Regression extends ExampleTest {
 		// <create combinations here, just as in ExampleTest_Smoke>
 	}
 }
-}}}
+```
 
-The AllPairsParameterFactory creates 17 parameter combinations. (The number of combinations required is always equal to or slightly greater than the product of the sizes of the two largest sets of test values. _4 x 4 = 16_) Therefore, ExampleTest_Regression executes 17 test cases.
+The AllPairsParameterFactory creates 17 parameter combinations. (The number of
+combinations required is always equal to or slightly greater than the product
+of the sizes of the two largest sets of test values. _4 x 4 = 16_) Therefore,
+ExampleTest_Regression executes 17 test cases.
 
-This test gives, within a reasonably short time, a pretty good idea of how functional the web-site's order-placement feature is. (Assuming that the input values you provided are representative of all possible values and that most of your bugs can be triggered by single inputs or by certain pairs of inputs. Analysis is required of the software under test in order to assess the validity of this assumption.)
+This test gives, within a reasonably short time, a pretty good idea of how
+functional the web-site's order-placement feature is. (Assuming that the input
+values you provided are representative of all possible values and that most of
+your bugs can be triggered by single inputs or by certain pairs of inputs.
+Analysis is required of the software under test in order to assess the validity
+of this assumption.)
 
-== Exhaustive test ==
-{{{
+### Exhaustive Test
+```
 /** Represents an exhaustive version of ExampleTest.
  * Tests all possible combinations of the parameter values. */
 public class ExampleTest_Exhaustive extends ExampleTest {
@@ -125,8 +156,15 @@ public class ExampleTest_Exhaustive extends ExampleTest {
 		// <create combinations here, just as in ExampleTest_Smoke>
 	}
 }
-}}}
+```
 
-The AllCombinationsParameterFactory creates 96 parameter combinations. (The number of combinations required is the product of the sizes of all of the value sets. _2 x 4 x 3 x 4 = 96_) Therefore, ExampleTest_Exhaustive executes 96 test cases.
+The AllCombinationsParameterFactory creates 96 parameter combinations. (The
+number of combinations required is the product of the sizes of all of the value
+sets. _2 x 4 x 3 x 4 = 96_) Therefore, ExampleTest_Exhaustive executes 96 test
+cases.
 
-This test may take a very long time, but it gives an excellent idea of how functional the web-site's order-placement feature is. (Assuming that the input values you provided are representative of all possible values. Analysis is required of the software under test in order to assess the validity of this assumption.)
+This test may take a very long time, but it gives an excellent idea of how
+functional the web-site's order-placement feature is. (Assuming that the input
+values you provided are representative of all possible values. Analysis is
+required of the software under test in order to assess the validity of this
+assumption.)
