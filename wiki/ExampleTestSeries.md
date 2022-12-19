@@ -63,13 +63,13 @@ public abstract class ExampleTest {
 }
 ```
 
-Assuming that the *{{{placeOrder}}}* method contains the requisite assertions
+Assuming that the `placeOrder` method contains the requisite assertions
 throughout its order-placement process, this test is capable of testing the
 placement of arbitrary orders.
 
-Note the *{{{@Test}}}* annotation, the *{{{public}}}* modifier, and the
-*{{{void}}}* return-type on the
-*{{{userCanPurchaseProductWithCouponAndPayment()}}}* method. Also note that it
+Note the `@Test` annotation, the `public` modifier, and the
+`void` return-type on the
+`userCanPurchaseProductWithCouponAndPayment()` method. Also note that it
 takes no parameters. (It gets the test-parameters indirectly through the class
 constructor.) Without all of these attributes, JUnit would have an
 initialization error.
@@ -95,10 +95,10 @@ public class ExampleTest_Smoke extends ExampleTest {
 		return parameterFactory.createListOfParameterCombinations();
 	}
 }
-}}}
+```
 
-Note the *{{{@Parameterized.Parameters}}}* annotation and the *{{{public
-static}}}* modifiers on the *{{{listOfParameterCombinations()}}}* method.
+Note the `@Parameterized.Parameters` annotation and the `public
+static` modifiers on the `listOfParameterCombinations()` method.
 Without these, JUnit would throw an exception with the message "No public
 static parameters method on class ExampleTest_Smoke".
 
@@ -132,7 +132,7 @@ public class ExampleTest_Regression extends ExampleTest {
 
 The AllPairsParameterFactory creates 17 parameter combinations. (The number of
 combinations required is always equal to or slightly greater than the product
-of the sizes of the two largest sets of test values. _4 x 4 = 16_) Therefore,
+of the sizes of the two largest sets of test values. `4 x 4 = 16`) Therefore,
 ExampleTest_Regression executes 17 test cases.
 
 This test gives, within a reasonably short time, a pretty good idea of how
@@ -160,7 +160,7 @@ public class ExampleTest_Exhaustive extends ExampleTest {
 
 The AllCombinationsParameterFactory creates 96 parameter combinations. (The
 number of combinations required is the product of the sizes of all of the value
-sets. _2 x 4 x 3 x 4 = 96_) Therefore, ExampleTest_Exhaustive executes 96 test
+sets. `2 x 4 x 3 x 4 = 96`) Therefore, ExampleTest_Exhaustive executes 96 test
 cases.
 
 This test may take a very long time, but it gives an excellent idea of how
